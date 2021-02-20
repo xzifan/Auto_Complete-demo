@@ -11,4 +11,11 @@ The vocalbulary is based on what have been submitted. Expressions and words that
 ## Get started  
 You can submit some words or expressions. In later input, you'll get suggestions for auto-completion of words if the word is not finished (haven't ended with a `space`). And possible suggestions for expressions when it end with a `space`.  
 
-If you wish to clear the default vocabulary and expression, you can try to click the title **Auto-complete** above the search bar.
+If you wish to clear the default vocabulary and expression, you can try to click the title **Auto-complete** above the search bar.  
+
+
+### Auto-Complete Words  
+![Auto-Complete Words](./words.gif)
+
+### Auto-Complete Expressions  
+![Auto-Complete Expressions](./expressions.gif)
