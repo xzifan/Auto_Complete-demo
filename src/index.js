@@ -10,7 +10,8 @@ class App extends React.Component {
       rest:'',
       suggestion:'',
       words:[],
-      expressions:[]
+      expressions:[],
+      text:''
     };
     
   }
@@ -18,7 +19,6 @@ class App extends React.Component {
     e = e || window.event;
     if(e.keyCode === 9){
       e.preventDefault();
-      console.log('catch tab')
       this.setState({
         text:this.state.rest+this.state.suggestion,
         suggestion:''
@@ -38,17 +38,21 @@ class App extends React.Component {
     
   }
   handleSubmit = ()=>{
-    let newWords = this.state.text.split(' ')
-    console.log(newWords)
-    this.state.expTrie.add(newWords)
-    newWords.map(word=>this.state.trie.add(word.toLowerCase()))  
-    this.setState({
-      expressions:[...this.state.expressions,this.state.text],
-      words:[...this.state.words,...newWords],
-      text:"",
-      rest:"",
-      suggestion:""
-    })
+    if (this.state.text.trim()!==''){
+      let newWords = this.state.text.split(' ')
+      console.log(newWords)
+      // add new expression to the expression prefix tree as an array of words
+      this.state.expTrie.add(newWords)
+      // add new words to the word prefix tree
+      newWords.map(word=>this.state.trie.add(word.toLowerCase()))  
+      this.setState({
+        expressions:[...this.state.expressions,this.state.text],
+        words:[...this.state.words,...newWords],
+        text:"",
+        rest:"",
+        suggestion:""
+      })
+    }
   }
   getVocabulary = async()=>{
     const url = 'https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt';
@@ -62,21 +66,24 @@ class App extends React.Component {
     let text = this.state.text
     if (text.trim() !== ''){   
       if (text.charAt(text.length-1)===' '){
-        let words = text.slice(0,-1).split(' ')
+        // the last char is ' ', check completion for expressions 
+        let words = text.toLowerCase().slice(0,-1).split(' ')
         let suggestion = this.state.expTrie.find(words)
         if (suggestion && suggestion.length!==0){
           this.setState({suggestion:words.join(' ')+" "+Object.keys(suggestion.children)[0]})
         }
         this.state.expTrie.clear()
       }else{   
+        // the last char is 'a-z', possibly an uncomplete word
         let words = text.split(' ')
-        const last_word = words.pop()
+        const uncomplete = words.pop()
         let rest = words.join(' ')+' '
         this.setState({rest:words.length===0?'':rest})
-        if( last_word !== '' && this.state.trie){
-          let suggestions = this.state.trie.complete(last_word)
+        if( uncomplete !== '' && this.state.trie){
+          let suggestions = this.state.trie.complete(uncomplete.toLowerCase())
           if (suggestions&&suggestions.length>0){
-            this.setState({suggestion:suggestions[0]})
+            // slice the suggestion to avoid replacing uppercase
+            this.setState({suggestion:uncomplete+suggestions[0].slice(uncomplete.length)})
             this.state.trie.clear()
           }
         }
@@ -89,17 +96,12 @@ class App extends React.Component {
     let trie = new Trie()
     let expTrie = new Trie()
     words.map(word=>trie.add(word.toLowerCase()))
-    expTrie.add("what's the weather like today".split(' '))
-    console.log(words)
+    expTrie.add("what's the weather like today".split(' ')) // for testing
     this.setState({
       words:words,
       trie:trie,
       expTrie:expTrie
     })
-    console.log("initial",trie)
-  }
-  componentDidUpdate() {
-    this._input.focus();
   }
   render(){
     return <div className="container">
@@ -108,9 +110,8 @@ class App extends React.Component {
         <input className="textfield" 
           type='text'
           autoFocus 
-          ref={c => (this._input = c)}
           onChange={this.handleInput} 
-          onKeyDown={(e)=>this.handleTab(e)}
+          onKeyDown={this.handleTab}
           value={this.state.text }
         />
         <input className="textfield copy"
