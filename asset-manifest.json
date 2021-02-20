@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Auto_Complete-demo/static/css/main.019026ad.chunk.css",
+    "main.css": "/Auto_Complete-demo/static/css/main.e7a02b90.chunk.css",
     "main.js": "/Auto_Complete-demo/static/js/main.6e0bd497.chunk.js",
     "main.js.map": "/Auto_Complete-demo/static/js/main.6e0bd497.chunk.js.map",
     "runtime-main.js": "/Auto_Complete-demo/static/js/runtime-main.83ea6884.js",
@@ -8,13 +8,13 @@
     "static/js/2.452eb4fe.chunk.js": "/Auto_Complete-demo/static/js/2.452eb4fe.chunk.js",
     "static/js/2.452eb4fe.chunk.js.map": "/Auto_Complete-demo/static/js/2.452eb4fe.chunk.js.map",
     "index.html": "/Auto_Complete-demo/index.html",
-    "static/css/main.019026ad.chunk.css.map": "/Auto_Complete-demo/static/css/main.019026ad.chunk.css.map",
+    "static/css/main.e7a02b90.chunk.css.map": "/Auto_Complete-demo/static/css/main.e7a02b90.chunk.css.map",
     "static/js/2.452eb4fe.chunk.js.LICENSE.txt": "/Auto_Complete-demo/static/js/2.452eb4fe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.83ea6884.js",
     "static/js/2.452eb4fe.chunk.js",
-    "static/css/main.019026ad.chunk.css",
+    "static/css/main.e7a02b90.chunk.css",
     "static/js/main.6e0bd497.chunk.js"
   ]
 }
