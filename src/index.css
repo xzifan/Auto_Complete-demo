@@ -14,7 +14,10 @@ body{
 }
 .container>span{
     font-size: 35px;
-    margin: 30px;
+    margin: 100px 0 50px;
+}
+.container>span:hover{
+    cursor: pointer;
 }
 .search_bar{
     position: relative;

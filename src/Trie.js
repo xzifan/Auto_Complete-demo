@@ -66,7 +66,6 @@ class Trie {
   
         if (CHILDREN && spread === CHILDREN) break;
       }
-      console.log(this.suggestions)
       return this.suggestions;
     }
   

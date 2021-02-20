@@ -40,7 +40,7 @@ class App extends React.Component {
   handleSubmit = ()=>{
     if (this.state.text.trim()!==''){
       let newWords = this.state.text.split(' ')
-      console.log(newWords)
+      // console.log(newWords)
       // add new expression to the expression prefix tree as an array of words
       this.state.expTrie.add(newWords)
       // add new words to the word prefix tree
@@ -105,7 +105,7 @@ class App extends React.Component {
   }
   render(){
     return <div className="container">
-      <span>Auto-complete</span>  
+      <span onClick={()=>{if(window.confirm("Are you sure to clear the existing vocabulary?"))this.setState({trie:new Trie(),expTrie:new Trie(),words:[],text:"",rest:"",suggestion:""})}}>Auto-complete</span>  
       <div className="search_bar">
         <input className="textfield" 
           type='text'
