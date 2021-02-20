@@ -108,6 +108,9 @@ class App extends React.Component {
   }
   render(){
     return <div className="container">
+      <a href="https://github.com/xzifan/Auto_Complete-demo">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="35" height="35"/>
+      </a>
       <span onClick={()=>{if(window.confirm("Are you sure to clear the existing vocabulary?"))this.setState({trie:new Trie(),expTrie:new Trie(),words:[],text:"",rest:"",suggestion:""})}}>Auto-complete</span>  
       <div className="search_bar">
         <input className="textfield" 

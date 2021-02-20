@@ -1,5 +1,5 @@
 # AutoCompletion Demo   
-This is a demo of autocompletion (search bar/ text box). 
+This is a demo of autocompletion (search bar/ text box).   http://xzifan.github.io/Auto_Complete-demo
 
 ![screenshot](./screenshot.jpg)  
 

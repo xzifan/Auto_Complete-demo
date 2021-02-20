@@ -12,6 +12,11 @@ body{
     align-items: center;
     flex-direction: column;
 }
+.container>a{
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
 .container>span{
     font-size: 35px;
     margin: 100px 0 50px;
@@ -45,7 +50,7 @@ body{
     left: 0;
     position: absolute;
     z-index: -1;
-    color: darkgray;
+    color: rgba(169, 169, 169, 0.7);
 }
 
 .search_bar>.btn_submit{
