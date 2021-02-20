@@ -70,7 +70,7 @@ class App extends React.Component {
         let words = text.toLowerCase().slice(0,-1).split(' ')
         let suggestion = this.state.expTrie.find(words)
         if (suggestion && suggestion.length!==0){
-          this.setState({suggestion:words.join(' ')+" "+Object.keys(suggestion.children)[0]})
+          this.setState({suggestion:text+Object.keys(suggestion.children)[0]})
         }
         this.state.expTrie.clear()
       }else{   
