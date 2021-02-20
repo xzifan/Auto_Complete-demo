@@ -1,4 +1,5 @@
 class Trie {
+  //Prefix tree 前缀树
     constructor() {
       this.trie = null;
       this.suggestions = [];
@@ -26,11 +27,13 @@ class Trie {
   
     find(word) {
       let root = this.trie;
-      for (const letter of word) {
-        if (letter in root.children) {
-          root = root.children[letter];
-        } else {
-          return null;
+      if (root){
+        for (const letter of word) {
+          if (letter in root.children) {
+            root = root.children[letter];
+          } else {
+            return null;
+          }
         }
       }
   
