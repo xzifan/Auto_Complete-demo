@@ -10,7 +10,6 @@ class App extends React.Component {
       rest:'',
       suggestion:'',
       words:[],
-      expressions:[],
       text:''
     };
     
@@ -39,14 +38,18 @@ class App extends React.Component {
   }
   handleSubmit = ()=>{
     if (this.state.text.trim()!==''){
-      let newWords = this.state.text.split(' ')
-      // console.log(newWords)
+      // split expressions by punctuations
+      let newExps = this.state.text.split(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g) 
+      console.log(newExps)
+      // split words by punctuations and spaces
+      let newWords = this.state.text.split(/[.,\/#!$%\^&\*;:{}=\-_`~()? ]/g) 
+      console.log(newWords)
+      
       // add new expression to the expression prefix tree as an array of words
-      this.state.expTrie.add(newWords)
+      newExps.map(exp => {if(exp!=="")this.state.expTrie.add(exp.toLowerCase().split(' ').filter(n=>n!==""))})
       // add new words to the word prefix tree
-      newWords.map(word=>this.state.trie.add(word.toLowerCase()))  
+      newWords.map(word=>{if(word!=="")this.state.trie.add(word.toLowerCase())})  
       this.setState({
-        expressions:[...this.state.expressions,this.state.text],
         words:[...this.state.words,...newWords],
         text:"",
         rest:"",
